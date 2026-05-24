@@ -2,23 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - ANGEL'S SWEET HEAVEN Store</title>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== RESET & BASE STYLES - PREVENT ALL SHRINKING & OVERFLOW ===== */
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            width: 100%;
         }
 
         body {
@@ -26,16 +19,13 @@
             line-height: 1.6;
             color: #333;
             background-color: rgba(234, 114, 138, 0.75);
-            background-image: none;
+            background-image: url('');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Fixed background overlay - NEVER moves */
         body::before {
             content: "";
             position: fixed;
@@ -45,9 +35,13 @@
             height: 100%;
             background-color: rgba(234, 114, 138, 0.75);
             z-index: -1;
-            pointer-events: none;
         }
-
+        
+        body {
+            filter: brightness(var(--brightness, 1));
+            font-size: calc(1rem * var(--font-size-multiplier, 1));
+        }
+        
         a {
             text-decoration: none;
             color: inherit;
@@ -69,35 +63,24 @@
             --gray-light: #f8f9fa;
             --gray: #6c757d;
             --dark: #343a40;
-            --hot-pink: #ff69b4;
+            --hot-pink: #ff69b4;  /* Added hot pink color variable */
         }
 
-        /* ===== TOP BANNER - FIXED TEXT WRAPPING ===== */
+        /* ===== TOP BANNER ===== */
         .top-banner {
             background-color: var(--burgundy);
             color: var(--white);
             text-align: center;
-            padding: 12px 16px;
-            font-size: 13px;
-            letter-spacing: 0.3px;
-            width: 100%;
-            word-break: break-word;
-        }
-
-        .top-banner p {
-            display: inline-block;
-            max-width: 100%;
-            white-space: normal;
-            word-wrap: break-word;
+            padding: 10px 0;
+            font-size: 14px;
+            letter-spacing: 0.5px;
         }
 
         .top-banner a {
             color: var(--pink);
             font-weight: bold;
-            margin-left: 8px;
+            margin-left: 10px;
             transition: opacity 0.3s;
-            display: inline-block;
-            white-space: nowrap;
         }
 
         .top-banner a:hover {
@@ -108,9 +91,8 @@
         /* ===== HEADER ===== */
         header {
             background-color: var(--white);
-            padding: 16px 24px;
+            padding: 20px 40px;
             box-shadow: 0 2px 10px rgba(128, 0, 32, 0.1);
-            width: 100%;
         }
 
         .header-container {
@@ -119,22 +101,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
         }
 
         .logo h1 {
-            font-size: 28px;
+            font-size: 32px;
             color: var(--burgundy);
-            white-space: nowrap;
-        }
-
-        @media (max-width: 550px) {
-            .logo h1 {
-                font-size: 20px;
-                white-space: normal;
-                word-break: break-word;
-            }
         }
 
         .logo span {
@@ -143,7 +114,7 @@
         }
 
         .header-icons a {
-            margin-left: 18px;
+            margin-left: 20px;
             font-size: 20px;
             color: var(--burgundy);
             transition: color 0.3s;
@@ -153,52 +124,23 @@
             color: var(--pink-dark);
         }
 
-        /* ===== NAVIGATION - CENTERED ON DESKTOP & TABLET ===== */
+        /* ===== NAVIGATION ===== */
         nav {
             background-color: var(--pink-light);
             border-bottom: 2px solid var(--pink);
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
         }
 
-        .nav-container {
+        .nav-menu {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px 20px;
-            position: relative;
-        }
-
-        /* Hamburger button - hidden on desktop, visible on mobile */
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 26px;
-            color: var(--burgundy);
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .nav-toggle:hover {
-            background-color: rgba(128, 0, 32, 0.1);
-            color: var(--hot-pink);
-        }
-
-        /* Desktop horizontal menu - PERFECTLY CENTERED like in the picture */
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 28px;
-            margin: 0;
-            padding: 0;
+            padding: 15px 20px;
+            gap: 25px;
         }
 
         .nav-menu > li {
@@ -208,31 +150,8 @@
         .nav-menu > li > a {
             color: var(--burgundy);
             font-weight: 500;
-            padding: 8px 0;
+            padding: 5px 0;
             transition: color 0.3s;
-            white-space: nowrap;
-            font-size: 0.95rem;
-        }
-
-        /* Tablet view - slightly reduced gap but still centered */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .nav-menu {
-                gap: 20px;
-            }
-            .nav-menu > li > a {
-                font-size: 0.9rem;
-                white-space: nowrap;
-            }
-        }
-
-        @media (max-width: 880px) and (min-width: 769px) {
-            .nav-menu {
-                gap: 14px;
-            }
-            .nav-menu > li > a {
-                font-size: 0.85rem;
-                white-space: nowrap;
-            }
         }
 
         .nav-menu > li > a:hover,
@@ -241,24 +160,24 @@
         }
 
         .nav-menu > li > a i {
-            font-size: 11px;
-            margin-left: 4px;
+            font-size: 12px;
+            margin-left: 5px;
         }
 
-        /* Dropdown Menu - Desktop */
+        /* Dropdown Menu */
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
             background-color: var(--white);
-            min-width: 210px;
+            min-width: 220px;
             box-shadow: 0 5px 20px rgba(128, 0, 32, 0.15);
-            border-radius: 8px;
-            padding: 8px 0;
+            border-radius: 5px;
+            padding: 10px 0;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: all 0.25s;
+            transition: all 0.3s;
             z-index: 100;
         }
 
@@ -272,68 +191,64 @@
             display: block;
             padding: 8px 20px;
             color: var(--dark);
-            transition: all 0.2s;
-            font-size: 0.9rem;
+            transition: all 0.3s;
         }
 
         .dropdown-menu li a:hover {
             background-color: var(--pink-light);
             color: var(--burgundy);
-            padding-left: 26px;
+            padding-left: 25px;
         }
 
-        /* ===== PAGE CONTAINER - NO MOVEMENT ===== */
+        /* ===== PAGE CONTAINER ===== */
         .page-container {
             max-width: 1200px;
-            width: 90%;
             margin: 40px auto;
-            padding: 0 16px;
-            overflow-x: hidden;
+            padding: 0 20px;
         }
 
         .page-title {
             color: var(--burgundy);
-            margin-bottom: 32px;
-            font-size: 32px;
+            margin-bottom: 40px;
+            font-size: 36px;
             text-align: center;
             position: relative;
-            word-break: break-word;
         }
 
         .page-title::after {
             content: '';
             display: block;
-            width: 70px;
+            width: 80px;
             height: 3px;
             background-color: var(--pink);
-            margin: 12px auto 0;
+            margin: 15px auto 0;
         }
 
         /* ===== ABOUT CONTENT ===== */
         .about-content {
             display: grid;
-            gap: 30px;
+            gap: 40px;
         }
 
         .about-section {
             background-color: var(--white);
-            padding: 28px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(128, 0, 32, 0.08);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(128, 0, 32, 0.1);
             border-left: 4px solid var(--pink);
         }
 
         .about-section h2 {
             color: var(--burgundy);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             font-size: 24px;
             border-bottom: 2px solid var(--pink-light);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .about-section p {
-            margin-bottom: 14px;
-            line-height: 1.7;
+            margin-bottom: 15px;
+            line-height: 1.8;
             color: #555;
         }
 
@@ -345,30 +260,27 @@
             margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #555;
-            flex-wrap: wrap;
         }
 
         .feature-list i {
             color: var(--burgundy);
-            font-size: 16px;
+            font-size: 18px;
             background-color: var(--pink-light);
-            padding: 7px;
+            padding: 8px;
             border-radius: 50%;
-            min-width: 32px;
-            text-align: center;
         }
 
-        /* ===== FOOTER - STABLE & RESPONSIVE ===== */
+        /* ===== FOOTER STYLES (FIXED) ===== */
         footer {
             background: var(--burgundy-dark);
             color: white;
-            padding: 30px 20px 20px;
-            margin-top: 50px;
-            width: 100%;
+            padding: 30px 20px;
+            margin-top: 60px;
         }
 
+        /* Container for footer layout - using flexbox for better control */
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -376,28 +288,32 @@
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
-            gap: 30px;
-            padding: 0 16px;
+            gap: 40px;
+            padding: 0 20px;
         }
 
+        /* Quick Links Section - stays on left */
         .footer-quick-links {
             flex: 1;
-            min-width: 180px;
+            min-width: 200px;
         }
 
+        /* Connect With Us Section - aligned to the right */
         .footer-connect-section {
             flex: 1;
-            min-width: 180px;
-            text-align: right;
+            min-width: 200px;
+            text-align: right; /* This moves everything to the right */
         }
 
+        /* Footer Headings in HOT PINK */
         .footer-heading {
             color: var(--hot-pink) !important;
             font-weight: bold;
-            margin-bottom: 18px;
-            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
         }
 
+        /* Quick Links list styling */
         .footer-links {
             list-style: none;
             padding: 0;
@@ -405,144 +321,61 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
             color: white;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             display: inline-block;
             text-decoration: none;
-            font-size: 0.9rem;
         }
 
+        /* Hover effect for quick links - turns pink and moves */
         .footer-links a:hover {
             color: var(--hot-pink) !important;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
+        /* Social Icons Container */
         .social-icons {
             display: flex;
-            justify-content: flex-end;
-            gap: 18px;
-            margin-top: 8px;
-            flex-wrap: wrap;
+            justify-content: flex-end; /* Aligns icons to the right */
+            gap: 20px;
+            margin-top: 10px;
         }
 
         .social-icons a {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             color: white;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             display: inline-block;
+            text-decoration: none;
         }
 
+        /* Hover effect for social icons - turns pink and moves up */
         .social-icons a:hover {
             color: var(--hot-pink) !important;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
+        /* Footer bottom section */
         .footer-bottom {
             max-width: 1200px;
-            margin: 25px auto 0;
-            padding-top: 18px;
+            margin: 30px auto 0;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
         }
 
         .footer-bottom p {
             margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             opacity: 0.8;
         }
 
-        /* ===== RESPONSIVE DESIGN - MOBILE BREAKPOINT ===== */
+        /* Responsive design for smaller screens */
         @media (max-width: 768px) {
-            /* Show hamburger menu on mobile */
-            .nav-toggle {
-                display: block;
-                position: static;
-                transform: none;
-            }
-            
-            /* On mobile, nav container changes to space-between for hamburger alignment */
-            .nav-container {
-                justify-content: space-between;
-                flex-wrap: wrap;
-            }
-
-            /* Vertical list form for navigation - appears below hamburger */
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: var(--pink-light);
-                padding: 16px 0;
-                gap: 12px;
-                border-radius: 0 0 16px 16px;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-                margin-top: 12px;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-menu > li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(128, 0, 32, 0.1);
-            }
-
-            .nav-menu > li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-menu > li > a {
-                display: block;
-                padding: 10px 0;
-                white-space: normal;
-                font-size: 1rem;
-                font-weight: 500;
-            }
-
-            /* Mobile dropdown handling */
-            .dropdown {
-                position: relative;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background-color: #ffe4e8;
-                min-width: 100%;
-                display: none;
-                margin-top: 6px;
-                border-radius: 12px;
-                padding: 8px 0;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown-menu li a {
-                padding: 10px 16px;
-                text-align: center;
-                font-size: 0.9rem;
-            }
-
-            .dropdown > a i {
-                transition: transform 0.2s;
-            }
-
-            .dropdown.active > a i {
-                transform: rotate(180deg);
-            }
-
-            /* Footer responsive */
             .footer-container {
                 flex-direction: column;
                 text-align: center;
@@ -561,85 +394,14 @@
             }
             
             .footer-links a:hover {
-                transform: translateX(0) scale(1.03);
+                transform: translateX(0) scale(1.05);
             }
-
-            .about-section {
-                padding: 20px;
-            }
-
-            .page-title {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 550px) {
-            body {
-                font-size: 14px;
-            }
-            .logo h1 {
-                font-size: 18px;
-            }
-            .header-icons a {
-                margin-left: 12px;
-                font-size: 18px;
-            }
-            .top-banner {
-                font-size: 11px;
-                padding: 10px 12px;
-            }
-            .top-banner a {
-                white-space: normal;
-                display: inline;
-            }
-            .about-section h2 {
-                font-size: 20px;
-            }
-            .feature-list li {
-                gap: 8px;
-            }
-            .footer-heading {
-                font-size: 1rem;
-            }
-            .social-icons a {
-                font-size: 1.4rem;
-            }
-            .page-container {
-                width: 95%;
-                padding: 0 12px;
-            }
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .header-icons {
-                margin-top: 6px;
-            }
-        }
-
-        /* Prevent any image/content from shifting */
-        img, picture, iframe, video {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Lock all major containers to prevent movement */
-        .page-container, header, nav, footer, .top-banner {
-            position: relative;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        /* Ensure dropdowns don't cause layout jumps */
-        .dropdown-menu {
-            will-change: opacity, transform;
         }
     </style>
 </head>
 
 <body>
-    <!-- Top Banner - fixed text wrap -->
+    <!-- Top Banner -->
     <div class="top-banner">
        <p>Free delivery on orders over P500 T&C's apply | P100 delivery for order below P500 <a href="#" class="shop-now" id="shopNowBanner">SHOP NOW →</a></p>
     </div>
@@ -651,39 +413,34 @@
                 <h1>ANGEL'S SWEET HEAVEN <span>STORE</span></h1>
             </div>
             <div class="header-icons">
-                <a href="cart.html" aria-label="Shopping cart"><i class="fas fa-shopping-cart"></i></a>
-                <a href="contact.html" aria-label="User account"><i class="fas fa-user"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="contact.html"><i class="fas fa-user"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- Navigation with Hamburger + Centered Menu on Desktop (exactly like picture) -->
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="exchange-policy.html">Exchange & Refund Policy</a></li>
-                <li><a href="Reviews.html">Reviews</a></li>
-                <li class="dropdown" id="dropdownItem">
-                    <a href="#">By Candy and Cake Type <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu" id="dropdownMenu">
-                        <li><a href="gummy.html">Gummy Candy</a></li>
-                        <li><a href="jelly-beans.html">Jelly Beans</a></li>
-                        <li><a href="mints.html">Mints and Peppermint Candy</a></li>
-                        <li><a href="sour.html">Sour Candy</a></li>
-                        <li><a href="carrot-cake.html">Carrot Cake</a></li>
-                        <li><a href="chocolate-cake.html">Chocolate Cake</a></li>
-                        <li><a href="vanilla-cake.html">Vanilla Cake</a></li>
-                        <li><a href="red-velvet-cake.html">Red Velvet Cake</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="exchange-policy.html">Exchange & Refund Policy</a></li>
+            <li><a href="Reviews.html">Reviews</a></li>
+            <li class="dropdown">
+                <a href="#">By Candy and Cake Type <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="gummy.html">Gummy Candy</a></li>
+                    <li><a href="jelly-beans.html">Jelly Beans</a></li>
+                    <li><a href="mints.html">Mints and Peppermint Candy</a></li>
+                    <li><a href="sour.html">Sour Candy</a></li>
+                    <li><a href="carrot-cake.html">Carrot Cake</a></li>
+                    <li><a href="chocolate-cake.html">Chocolate Cake</a></li>
+                    <li><a href="vanilla-cake.html">Vanilla Cake</a></li>
+                    <li><a href="red-velvet-cake.html">Red Velvet Cake</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
 
     <!-- About Us Content -->
@@ -715,9 +472,10 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer - FIXED VERSION with all requested changes -->
     <footer>
         <div class="footer-container">
+            <!-- Quick Links Section (Left side) -->
             <div class="footer-quick-links">
                 <h4 class="footer-heading">Quick Links</h4>
                 <ul class="footer-links">
@@ -728,6 +486,7 @@
                 </ul>
             </div>
             
+            <!-- Connect With Us Section (Right side - text-align: right) -->
             <div class="footer-connect-section">
                 <h4 class="footer-heading">Connect With Us</h4>
                 <div class="social-icons">
@@ -745,142 +504,26 @@
     </footer>
 
     <script>
-        (function() {
-            // Fix SHOP NOW redirect to cart page
-            const shopBtn = document.getElementById('shopNowBanner');
-            if (shopBtn) {
-                shopBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = 'cart.html';
-                });
-            }
-            
-            // Also any legacy shop link
-            const oldLink = document.getElementById('shopNowLink');
-            if (oldLink) {
-                oldLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = 'cart.html';
-                });
-            }
-            
-            // ----- RESPONSIVE TOGGLE: Hamburger & Vertical List Form -----
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navMenu.classList.toggle('active');
-                    const icon = navToggle.querySelector('i');
-                    if (icon) {
-                        if (navMenu.classList.contains('active')) {
-                            icon.classList.remove('fa-bars');
-                            icon.classList.add('fa-times');
-                        } else {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                    }
-                });
-            }
-            
-            // Handle dropdown in mobile view (click on parent toggles dropdown)
-            const dropdownLi = document.getElementById('dropdownItem');
-            if (dropdownLi) {
-                const dropdownLink = dropdownLi.querySelector('a');
-                
-                if (dropdownLink) {
-                    // Remove existing inline listener by cloning (clean approach)
-                    const newLink = dropdownLink.cloneNode(true);
-                    dropdownLink.parentNode.replaceChild(newLink, dropdownLink);
-                    const freshDropdownLi = document.getElementById('dropdownItem');
-                    const freshLink = freshDropdownLi ? freshDropdownLi.querySelector('a') : null;
-                    
-                    if (freshLink && freshDropdownLi) {
-                        freshLink.addEventListener('click', function(e) {
-                            if (window.innerWidth <= 768) {
-                                e.preventDefault();
-                                freshDropdownLi.classList.toggle('active');
-                            }
-                        });
-                    }
-                }
-            }
-            
-            // Function to reset mobile menu state on resize
-            function handleResponsiveResize() {
-                if (window.innerWidth > 768) {
-                    // Desktop/tablet mode: close mobile menu and reset dropdown active states
-                    if (navMenu) navMenu.classList.remove('active');
-                    if (navToggle) {
-                        const icon = navToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                    }
-                    // Reset any open dropdowns on desktop
-                    const dropdownContainer = document.getElementById('dropdownItem');
-                    if (dropdownContainer && dropdownContainer.classList.contains('active')) {
-                        dropdownContainer.classList.remove('active');
-                    }
-                }
-            }
-            
-            window.addEventListener('resize', handleResponsiveResize);
-            handleResponsiveResize();
-            
-            // Close mobile menu when a navigation link is clicked (except dropdown toggles on mobile)
-            const allNavLinks = document.querySelectorAll('.nav-menu a');
-            allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const parentLi = this.closest('.dropdown');
-                    const isMobile = window.innerWidth <= 768;
-                    
-                    if (isMobile && parentLi && this === parentLi.querySelector('a')) {
-                        // This is the dropdown toggle - do NOT close whole menu
-                        return;
-                    }
-                    
-                    // For any other link click, close the mobile menu
-                    if (isMobile && navMenu && navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        if (navToggle) {
-                            const icon = navToggle.querySelector('i');
-                            if (icon) {
-                                icon.classList.remove('fa-times');
-                                icon.classList.add('fa-bars');
-                            }
-                        }
-                    }
-                });
+        // Ensure the SHOP NOW link navigates to cart page
+        var shopNowElement = document.getElementById('shopNowBanner');
+        if (shopNowElement) {
+            shopNowElement.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'cart.html';
             });
-            
-            // Ensure body never overflows and background stays fixed
-            document.body.style.overflowX = 'hidden';
-            
-            // Lock all content containers to prevent any movement
-            const stableElements = document.querySelectorAll('.page-container, header, nav, footer, .top-banner, body');
-            stableElements.forEach(el => {
-                if (el) {
-                    el.style.transform = 'translateZ(0)';
-                    el.style.backfaceVisibility = 'hidden';
-                }
+        }
+        
+        // Also handle if there was an old 'shopNowLink' reference (for compatibility)
+        var oldShopLink = document.getElementById('shopNowLink');
+        if (oldShopLink) {
+            oldShopLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'cart.html';
             });
-            
-            // Final safety: on load, ensure no layout shift
-            window.addEventListener('load', function() {
-                document.body.style.position = 'relative';
-                const allImages = document.querySelectorAll('img');
-                allImages.forEach(img => {
-                    if (!img.complete) {
-                        img.style.opacity = '0';
-                        img.onload = function() { this.style.opacity = '1'; };
-                    }
-                });
-            });
-        })();
+        }
+        
+        // Add any additional smooth behavior for footer links if needed
+        // All footer links already have hover effects via CSS (move and turn pink)
     </script>
 </body>
 </html>
