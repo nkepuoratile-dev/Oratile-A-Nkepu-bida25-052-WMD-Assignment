@@ -32,7 +32,6 @@
             background-position: center;
             position: relative;
             min-height: 100vh;
-            /* Prevent any body shift */
             overflow-x: hidden;
         }
 
@@ -154,7 +153,7 @@
             color: var(--pink-dark);
         }
 
-        /* ===== NAVIGATION - FULLY RESPONSIVE WITH CENTERED MENU ON DESKTOP ===== */
+        /* ===== NAVIGATION - CENTERED ON DESKTOP & TABLET ===== */
         nav {
             background-color: var(--pink-light);
             border-bottom: 2px solid var(--pink);
@@ -170,12 +169,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 20px;
+            padding: 12px 20px;
             position: relative;
-            flex-wrap: wrap;
         }
 
-        /* Hamburger button - visible on mobile */
+        /* Hamburger button - hidden on desktop, visible on mobile */
         .nav-toggle {
             display: none;
             background: none;
@@ -186,10 +184,6 @@
             padding: 8px 12px;
             border-radius: 8px;
             transition: all 0.2s;
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
         }
 
         .nav-toggle:hover {
@@ -197,15 +191,14 @@
             color: var(--hot-pink);
         }
 
-        /* Desktop horizontal menu - CENTERED */
+        /* Desktop horizontal menu - PERFECTLY CENTERED like in the picture */
         .nav-menu {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 28px;
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
         }
 
         .nav-menu > li {
@@ -221,13 +214,24 @@
             font-size: 0.95rem;
         }
 
-        @media (max-width: 1100px) {
+        /* Tablet view - slightly reduced gap but still centered */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-menu {
+                gap: 20px;
+            }
+            .nav-menu > li > a {
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 880px) and (min-width: 769px) {
             .nav-menu {
                 gap: 14px;
             }
             .nav-menu > li > a {
-                white-space: normal;
                 font-size: 0.85rem;
+                white-space: nowrap;
             }
         }
 
@@ -451,31 +455,22 @@
             opacity: 0.8;
         }
 
-        /* ===== RESPONSIVE DESIGN - LIST FORM NAV ON MOBILE, NO SHRINK ===== */
-        @media (max-width: 880px) {
-            .nav-menu > li > a {
-                white-space: normal;
-                font-size: 0.8rem;
-            }
-            .nav-menu {
-                gap: 10px;
-            }
-        }
-
+        /* ===== RESPONSIVE DESIGN - MOBILE BREAKPOINT ===== */
         @media (max-width: 768px) {
-            /* Show hamburger menu */
+            /* Show hamburger menu on mobile */
             .nav-toggle {
                 display: block;
+                position: static;
+                transform: none;
             }
             
-            /* On mobile, nav container changes to flex-start for hamburger alignment */
+            /* On mobile, nav container changes to space-between for hamburger alignment */
             .nav-container {
-                justify-content: flex-start;
-                position: relative;
-                min-height: 50px;
+                justify-content: space-between;
+                flex-wrap: wrap;
             }
 
-            /* Vertical list form for navigation */
+            /* Vertical list form for navigation - appears below hamburger */
             .nav-menu {
                 display: none;
                 flex-direction: column;
@@ -485,11 +480,7 @@
                 gap: 12px;
                 border-radius: 0 0 16px 16px;
                 box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-                margin-top: 10px;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                z-index: 1000;
+                margin-top: 12px;
             }
 
             .nav-menu.active {
@@ -666,7 +657,7 @@
         </div>
     </header>
 
-    <!-- Navigation with Hamburger + Centered Menu on Desktop -->
+    <!-- Navigation with Hamburger + Centered Menu on Desktop (exactly like picture) -->
     <nav>
         <div class="nav-container">
             <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
@@ -797,7 +788,6 @@
             // Handle dropdown in mobile view (click on parent toggles dropdown)
             const dropdownLi = document.getElementById('dropdownItem');
             if (dropdownLi) {
-                // Refresh reference to avoid duplicates
                 const dropdownLink = dropdownLi.querySelector('a');
                 
                 if (dropdownLink) {
@@ -812,8 +802,6 @@
                             if (window.innerWidth <= 768) {
                                 e.preventDefault();
                                 freshDropdownLi.classList.toggle('active');
-                            } else {
-                                // Desktop: allow normal hover behavior, do nothing
                             }
                         });
                     }
@@ -823,7 +811,7 @@
             // Function to reset mobile menu state on resize
             function handleResponsiveResize() {
                 if (window.innerWidth > 768) {
-                    // Desktop mode: close mobile menu and reset dropdown active states
+                    // Desktop/tablet mode: close mobile menu and reset dropdown active states
                     if (navMenu) navMenu.classList.remove('active');
                     if (navToggle) {
                         const icon = navToggle.querySelector('i');
@@ -837,9 +825,6 @@
                     if (dropdownContainer && dropdownContainer.classList.contains('active')) {
                         dropdownContainer.classList.remove('active');
                     }
-                } else {
-                    // On mobile, keep menu collapsed by default, but don't force close if open
-                    // Also ensure that dropdowns that were open remain functional
                 }
             }
             
@@ -850,12 +835,11 @@
             const allNavLinks = document.querySelectorAll('.nav-menu a');
             allNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    // Check if this is inside a dropdown on mobile and is the dropdown trigger
                     const parentLi = this.closest('.dropdown');
                     const isMobile = window.innerWidth <= 768;
                     
                     if (isMobile && parentLi && this === parentLi.querySelector('a')) {
-                        // This is the dropdown toggle - do NOT close whole menu, just toggle dropdown
+                        // This is the dropdown toggle - do NOT close whole menu
                         return;
                     }
                     
@@ -887,9 +871,7 @@
             
             // Final safety: on load, ensure no layout shift
             window.addEventListener('load', function() {
-                // Force reflow to stabilize
                 document.body.style.position = 'relative';
-                // Fix any potential image shifts
                 const allImages = document.querySelectorAll('img');
                 allImages.forEach(img => {
                     if (!img.complete) {
