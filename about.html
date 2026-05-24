@@ -154,7 +154,7 @@
             color: var(--pink-dark);
         }
 
-        /* ===== NAVIGATION - FULLY RESPONSIVE ===== */
+        /* ===== NAVIGATION - FULLY RESPONSIVE WITH CENTERED MENU ON DESKTOP ===== */
         nav {
             background-color: var(--pink-light);
             border-bottom: 2px solid var(--pink);
@@ -168,7 +168,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 10px 20px;
             position: relative;
@@ -186,6 +186,10 @@
             padding: 8px 12px;
             border-radius: 8px;
             transition: all 0.2s;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .nav-toggle:hover {
@@ -193,7 +197,7 @@
             color: var(--hot-pink);
         }
 
-        /* Desktop horizontal menu */
+        /* Desktop horizontal menu - CENTERED */
         .nav-menu {
             display: flex;
             justify-content: center;
@@ -463,6 +467,13 @@
             .nav-toggle {
                 display: block;
             }
+            
+            /* On mobile, nav container changes to flex-start for hamburger alignment */
+            .nav-container {
+                justify-content: flex-start;
+                position: relative;
+                min-height: 50px;
+            }
 
             /* Vertical list form for navigation */
             .nav-menu {
@@ -475,6 +486,10 @@
                 border-radius: 0 0 16px 16px;
                 box-shadow: 0 8px 16px rgba(0,0,0,0.08);
                 margin-top: 10px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
             }
 
             .nav-menu.active {
@@ -651,7 +666,7 @@
         </div>
     </header>
 
-    <!-- Navigation with Hamburger + Vertical List Form on Mobile -->
+    <!-- Navigation with Hamburger + Centered Menu on Desktop -->
     <nav>
         <div class="nav-container">
             <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
@@ -784,7 +799,6 @@
             if (dropdownLi) {
                 // Refresh reference to avoid duplicates
                 const dropdownLink = dropdownLi.querySelector('a');
-                const dropdownMenuDiv = dropdownLi.querySelector('.dropdown-menu');
                 
                 if (dropdownLink) {
                     // Remove existing inline listener by cloning (clean approach)
@@ -824,7 +838,7 @@
                         dropdownContainer.classList.remove('active');
                     }
                 } else {
-                    // On mobile, we keep menu collapsed by default, but don't force close if open
+                    // On mobile, keep menu collapsed by default, but don't force close if open
                     // Also ensure that dropdowns that were open remain functional
                 }
             }
